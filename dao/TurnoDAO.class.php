@@ -7,11 +7,11 @@
  */
 require_once 'Conn.class.php';
 /**
- * Description of REquipAtiv
+ * Description of TurnoDAO
  *
  * @author anderson
  */
-class REquipAtivDAO extends Conn {
+class TurnoDAO extends Conn {
     //put your code here
     
     /** @var PDOStatement */
@@ -23,21 +23,13 @@ class REquipAtivDAO extends Conn {
     public function dados() {
 
         $select = " SELECT "
-                    . " ROWNUM AS \"idEquipAtiv\" "
-                    . " , VE.EQUIP_ID AS \"idEquip\" "
-                    . " , AA.ATIVAGR_ID AS \"idAtiv\" "
+                . " TURNOTRAB_ID AS \"idTurno\" "
+                . " , TPTUREQUIP_CD AS \"codTurno\" "
+                . " , NRO_TURNO AS \"nroTurno\" "
+                . " , 'TURNO ' || NRO_TURNO || ': ' || HR_INI || ' - ' || HR_FIM AS \"descTurno\" "
                 . " FROM "
-                    . " V_SIMOVA_EQUIP VE "
-                    . " , V_SIMOVA_MODELO_ATIVAGR VA "
-                    . " , V_SIMOVA_ATIVAGR_NEW AA "
-                . " WHERE "
-                . " VE.MODELEQUIP_ID = VA.MODELEQUIP_ID "
-                . " AND "
-                . " VA.ATIVAGR_CD = AA.ATIVAGR_CD "
-                . " AND "
-                . " AA.DESAT = 0 " 
-                . " ORDER BY ROWNUM ASC ";
-        
+                . " USINAS.V_SIMOVA_TURNO_EQUIP_NEW ";
+
         $this->Conn = parent::getConn();
         $this->Read = $this->Conn->prepare($select);
         $this->Read->setFetchMode(PDO::FETCH_ASSOC);
@@ -45,6 +37,7 @@ class REquipAtivDAO extends Conn {
         $result = $this->Read->fetchAll();
 
         return $result;
+        
     }
     
 }

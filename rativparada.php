@@ -1,11 +1,11 @@
 <?php
 
-require('./dao/REquipAtivDAO.class.php');
+require('./dao/RAtivParadaDAO.class.php');
 
-$rEquipAtivDAO = new REquipAtivDAO();
+$rAtivParadaDAO = new RAtivParadaDAO();
 
 //cria o array associativo
-$dados = array("dados"=>$rEquipAtivDAO->dados());
+$dados = array("dados"=>$rAtivParadaDAO->dados());
 
 //converte o conteúdo do array associativo para uma string JSON
 $json_str = json_encode($dados);

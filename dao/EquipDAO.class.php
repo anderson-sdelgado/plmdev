@@ -31,14 +31,12 @@ class EquipDAO extends Conn {
                 . " FROM "
                 . " USINAS.V_SIMOVA_EQUIP E ";
         
+        $this->Conn = parent::getConn();
         $this->Read = $this->Conn->prepare($select);
         $this->Read->setFetchMode(PDO::FETCH_ASSOC);
         $this->Read->execute();
-        $r1 = $this->Read->fetchAll();
+        $result = $this->Read->fetchAll();
 
-        $dados = array("dados"=>$r1);
-        $res1 = json_encode($dados);
-
-        return $res1;
+        return $result;
     }
 }

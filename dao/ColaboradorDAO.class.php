@@ -25,8 +25,8 @@ class ColaboradorDAO extends Conn {
     public function dados() {
 
         $select = " SELECT "
-                    . " NRO_CRACHA AS \"codColaborador\" "
-                    . " , FUNC_NOME AS \"nomeColaborador\" "
+                    . " NRO_CRACHA AS \"codColab\" "
+                    . " , FUNC_NOME AS \"nomeColab\" "
                 . " FROM "
                     . " USINAS.V_SIMOVA_FUNC "
                 . " ORDER BY "

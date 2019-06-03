@@ -23,8 +23,7 @@ class RAtivParadaDAO extends Conn {
     public function dados() {
 
         $select = " SELECT " 
-                    . " ROWNUM AS \"idRAtivParada\" "
-                    . " , AA.ATIVAGR_ID AS \"idAtiv\" "
+                    . " AA.ATIVAGR_ID AS \"idAtiv\" "
                     . " , MOT.MOTPARADA_ID AS \"idParada\" "
                     . " FROM " 
                     . " V_SIMOVA_ATIVAGR_NEW AA " 

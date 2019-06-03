@@ -11,7 +11,7 @@ require_once 'Conn.class.php';
  *
  * @author anderson
  */
-class ColaboradorDAO extends Conn {
+class ColabDAO extends Conn {
     //put your code here
     
     //put your code here

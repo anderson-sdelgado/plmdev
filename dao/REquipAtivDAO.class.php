@@ -23,8 +23,7 @@ class REquipAtivDAO extends Conn {
     public function dados() {
 
         $select = " SELECT "
-                    . " ROWNUM AS \"idEquipAtiv\" "
-                    . " , VE.EQUIP_ID AS \"idEquip\" "
+                    . " VE.EQUIP_ID AS \"idEquip\" "
                     . " , AA.ATIVAGR_ID AS \"idAtiv\" "
                 . " FROM "
                     . " V_SIMOVA_EQUIP VE "

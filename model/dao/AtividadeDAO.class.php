@@ -5,17 +5,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-require_once 'Conn.class.php';
+require_once ('./dbutil/Conn.class.php');
 /**
- * Description of MotoristaDAO
+ * Description of AtividadeDAO
  *
  * @author anderson
  */
-class ColabDAO extends Conn {
+class AtividadeDAO extends Conn {
     //put your code here
-    
-    //put your code here
-    
+
     /** @var PDOStatement */
     private $Read;
 
@@ -25,14 +23,12 @@ class ColabDAO extends Conn {
     public function dados() {
 
         $select = " SELECT "
-                    . " NRO_CRACHA AS \"codColab\" "
-                    . " , FUNC_NOME AS \"nomeColab\" "
+                        . " A.ATIVAGR_ID AS \"idAtiv\" "
+                        . " , A.ATIVAGR_CD AS \"codAtiv\" "
+                        . " , CARACTER(A.ATIVAGR_DESCR) AS \"descrAtiv\" "
                 . " FROM "
-                    . " USINAS.V_SIMOVA_FUNC "
-                . " ORDER BY "
-                    . " NRO_CRACHA "
-                . " ASC ";
-        
+                    . " USINAS.VMB_ATIVAGR_MECAN A ";
+
         $this->Conn = parent::getConn();
         $this->Read = $this->Conn->prepare($select);
         $this->Read->setFetchMode(PDO::FETCH_ASSOC);
@@ -40,7 +36,6 @@ class ColabDAO extends Conn {
         $result = $this->Read->fetchAll();
 
         return $result;
-        
     }
-    
+
 }

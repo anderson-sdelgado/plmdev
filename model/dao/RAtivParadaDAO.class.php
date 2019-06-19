@@ -5,15 +5,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-require_once 'Conn.class.php';
+require_once './dbutil/Conn.class.php';
 /**
- * Description of ParadaDAO
+ * Description of rEquipParadaDAO
  *
  * @author anderson
  */
-class ParadaDAO extends Conn {
+class RAtivParadaDAO extends Conn {
     //put your code here
-
+    
     /** @var PDOStatement */
     private $Read;
 
@@ -22,16 +22,17 @@ class ParadaDAO extends Conn {
 
     public function dados() {
 
-        $select = " SELECT "
-                    . " MOTPARADA_ID AS \"idParada\" "
-                    . " , CD AS \"codParada\" "
-                    . " , CARACTER(DESCR) AS \"descrParada\" "
-                . " FROM "
-                    . " USINAS.MOTIVO_PARADA "
-                . " ORDER BY "
-                    . " MOTPARADA_ID "
-                . " ASC ";
-
+        $select = " SELECT " 
+                    . " AA.ATIVAGR_ID AS \"idAtiv\" "
+                    . " , MOT.MOTPARADA_ID AS \"idParada\" "
+                    . " FROM " 
+                    . " V_SIMOVA_ATIVAGR_NEW AA " 
+                    . " , USINAS.R_ATIVAGR_MOTPARADA MOT " 
+                    . " WHERE " 
+                    . " MOT.ATIVAGR_ID = AA.ATIVAGR_ID " 
+                    . " AND " 
+                    . " AA.DESAT = 0 ";
+        
         $this->Conn = parent::getConn();
         $this->Read = $this->Conn->prepare($select);
         $this->Read->setFetchMode(PDO::FETCH_ASSOC);
@@ -40,5 +41,5 @@ class ParadaDAO extends Conn {
 
         return $result;
     }
-
+    
 }

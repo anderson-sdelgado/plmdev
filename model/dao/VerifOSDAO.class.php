@@ -5,7 +5,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-require_once 'Conn.class.php';
+require_once './dbutil/Conn.class.php';
 /**
  * Description of VerOSDAO
  *
@@ -60,7 +60,7 @@ class VerifOSDAO extends Conn {
         $dados = array("dados"=>$r2);
         $res2 = json_encode($dados);
         
-        return $res1 . "#" . $res2;
+        return $res1 . "_" . $res2;
     }
     
 }

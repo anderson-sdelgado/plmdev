@@ -5,38 +5,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-require_once 'Conn.class.php';
+require_once './dbutil/Conn.class.php';
+
 /**
- * Description of REquipAtiv
+ * Description of ROSAtivDAO
  *
  * @author anderson
  */
-class REquipAtivDAO extends Conn {
+class ROSAtivDAO extends Conn {
     //put your code here
-    
+
     /** @var PDOStatement */
     private $Read;
 
     /** @var PDO */
     private $Conn;
 
-    public function dados() {
+    public function dados($os) {
 
         $select = " SELECT "
-                    . " VE.EQUIP_ID AS \"idEquip\" "
-                    . " , AA.ATIVAGR_ID AS \"idAtiv\" "
+                . " NRO_OS AS \"nroOS\" "
+                . " , ATIVAGR_ID AS \"idAtiv\" "
                 . " FROM "
-                    . " V_SIMOVA_EQUIP VE "
-                    . " , V_SIMOVA_MODELO_ATIVAGR VA "
-                    . " , V_SIMOVA_ATIVAGR_NEW AA "
+                . " USINAS.V_PMM_OS "
                 . " WHERE "
-                . " VE.MODELEQUIP_ID = VA.MODELEQUIP_ID "
-                . " AND "
-                . " VA.ATIVAGR_CD = AA.ATIVAGR_CD "
-                . " AND "
-                . " AA.DESAT = 0 " 
-                . " ORDER BY ROWNUM ASC ";
-        
+                . " NRO_OS = " . $os;
+
         $this->Conn = parent::getConn();
         $this->Read = $this->Conn->prepare($select);
         $this->Read->setFetchMode(PDO::FETCH_ASSOC);
@@ -45,5 +39,5 @@ class REquipAtivDAO extends Conn {
 
         return $result;
     }
-    
+
 }

@@ -5,16 +5,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-require_once 'Conn.class.php';
-
+require_once ('./dbutil/Conn.class.php');
 /**
- * Description of AtividadeDAO
+ * Description of EquipSegDAO
  *
  * @author anderson
  */
-class AtividadeDAO extends Conn {
+class EquipDAO extends Conn {
     //put your code here
-
+    
     /** @var PDOStatement */
     private $Read;
 
@@ -24,12 +23,14 @@ class AtividadeDAO extends Conn {
     public function dados() {
 
         $select = " SELECT "
-                        . " A.ATIVAGR_ID AS \"idAtiv\" "
-                        . " , A.ATIVAGR_CD AS \"codAtiv\" "
-                        . " , CARACTER(A.ATIVAGR_DESCR) AS \"descrAtiv\" "
+                . " E.EQUIP_ID AS \"idEquip\" "
+                . " , E.NRO_EQUIP AS \"codEquip\" "
+                . " , E.CLASSOPER_CD AS \"codClasseEquip\" "
+                . " , CARACTER(E.CLASSOPER_DESCR) AS \"descrClasseEquip\" "
+                . " , E.TPTUREQUIP_CD AS \"codTurno\" "
                 . " FROM "
-                    . " USINAS.VMB_ATIVAGR_MECAN A ";
-
+                . " USINAS.V_SIMOVA_EQUIP E ";
+        
         $this->Conn = parent::getConn();
         $this->Read = $this->Conn->prepare($select);
         $this->Read->setFetchMode(PDO::FETCH_ASSOC);
@@ -38,5 +39,4 @@ class AtividadeDAO extends Conn {
 
         return $result;
     }
-
 }

@@ -5,13 +5,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-require_once 'Conn.class.php';
+require_once ('./dbutil/Conn.class.php');
 /**
- * Description of rEquipParadaDAO
+ * Description of OSDAO
  *
  * @author anderson
  */
-class RAtivParadaDAO extends Conn {
+class OSDAO extends Conn {
     //put your code here
     
     /** @var PDOStatement */
@@ -20,19 +20,19 @@ class RAtivParadaDAO extends Conn {
     /** @var PDO */
     private $Conn;
 
-    public function dados() {
+    public function dados($os) {
 
-        $select = " SELECT " 
-                    . " AA.ATIVAGR_ID AS \"idAtiv\" "
-                    . " , MOT.MOTPARADA_ID AS \"idParada\" "
-                    . " FROM " 
-                    . " V_SIMOVA_ATIVAGR_NEW AA " 
-                    . " , USINAS.R_ATIVAGR_MOTPARADA MOT " 
-                    . " WHERE " 
-                    . " MOT.ATIVAGR_ID = AA.ATIVAGR_ID " 
-                    . " AND " 
-                    . " AA.DESAT = 0 ";
-        
+        $select = " SELECT DISTINCT "
+                    . " NRO_OS AS \"nroOS\" "
+                    . " , PROPRAGR_CD AS \"codProprOS\" "
+                    . " , CARACTER(PROPRAGR_DESCR) AS \"descrProprOS\" "
+                    . " , NVL(AREA_PROGR, 0) AS \"areaProgrOS\" "
+                . " FROM "
+                    . " USINAS.V_PMM_OS "
+                . " WHERE "
+                    . " NRO_OS = " . $os
+                    . " " ;
+
         $this->Conn = parent::getConn();
         $this->Read = $this->Conn->prepare($select);
         $this->Read->setFetchMode(PDO::FETCH_ASSOC);

@@ -5,15 +5,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-require_once 'Conn.class.php';
+require_once './dbutil/Conn.class.php';
 /**
- * Description of TurnoDAO
+ * Description of ParadaDAO
  *
  * @author anderson
  */
-class TurnoDAO extends Conn {
+class ParadaDAO extends Conn {
     //put your code here
-    
+
     /** @var PDOStatement */
     private $Read;
 
@@ -23,12 +23,14 @@ class TurnoDAO extends Conn {
     public function dados() {
 
         $select = " SELECT "
-                . " TURNOTRAB_ID AS \"idTurno\" "
-                . " , TPTUREQUIP_CD AS \"codTurno\" "
-                . " , NRO_TURNO AS \"nroTurno\" "
-                . " , 'TURNO ' || NRO_TURNO || ': ' || HR_INI || ' - ' || HR_FIM AS \"descTurno\" "
+                    . " MOTPARADA_ID AS \"idParada\" "
+                    . " , CD AS \"codParada\" "
+                    . " , CARACTER(DESCR) AS \"descrParada\" "
                 . " FROM "
-                . " USINAS.V_SIMOVA_TURNO_EQUIP_NEW ";
+                    . " USINAS.MOTIVO_PARADA "
+                . " ORDER BY "
+                    . " MOTPARADA_ID "
+                . " ASC ";
 
         $this->Conn = parent::getConn();
         $this->Read = $this->Conn->prepare($select);
@@ -37,7 +39,6 @@ class TurnoDAO extends Conn {
         $result = $this->Read->fetchAll();
 
         return $result;
-        
     }
-    
+
 }

@@ -1,14 +1,7 @@
 <?php
 
-require('./dao/REquipAtivDAO.class.php');
+require('./control/REquipAtivCTR.class.php');
 
-$rEquipAtivDAO = new REquipAtivDAO();
+$rEquipAtivCTR = new REquipAtivCTR();
 
-//cria o array associativo
-$dados = array("dados"=>$rEquipAtivDAO->dados());
-
-//converte o conteúdo do array associativo para uma string JSON
-$json_str = json_encode($dados);
-
-//imprime a string JSON
-echo $json_str;
+echo $rEquipAtivCTR->dados();

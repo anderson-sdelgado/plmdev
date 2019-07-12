@@ -5,15 +5,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-require_once('./model/dao/InserirApontDAO.class.php');
-require_once('./model/dao/InserirLogDAO.class.php');
-
+require_once('./model/dao/ApontDAO.class.php');
+require_once('./model/dao/LogDAO.class.php');
 /**
  * Description of InserirApontCTR
  *
  * @author anderson
  */
-class InserirApontCTR {
+class ApontCTR {
 
     //put your code here
 
@@ -25,20 +24,20 @@ class InserirApontCTR {
         $jsonObjAponta = json_decode($dados);
         
         $dadosAponta = $jsonObjAponta->apont;
-        $inserirApontDAO = new InserirApontDAO();
+        $apontDAO = new ApontDAO();
 
         foreach ($dadosAponta as $apont) {
-            $v = $inserirApontDAO->verifApont($apont);
+            $v = $apontDAO->verifApont($apont);
             if ($v == 0) {
-                $inserirApontDAO->insApont($apont);
+                $apontDAO->insApont($apont);
             }
         }
         echo 'GRAVOU-APONT';
     }
 
     private function salvarLog($dados, $pagina) {
-        $inserirLogDAO = new InserirLogDAO();
-        $inserirLogDAO->salvarDados($dados, $pagina);
+        $logDAO = new LogDAO();
+        $logDAO->salvarDados($dados, $pagina);
     }
 
 }

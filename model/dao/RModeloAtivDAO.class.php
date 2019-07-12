@@ -11,7 +11,7 @@ require_once './dbutil/Conn.class.php';
  *
  * @author anderson
  */
-class REquipAtivDAO extends Conn {
+class RModeloAtivDAO extends Conn {
     //put your code here
     
     /** @var PDOStatement */
@@ -23,15 +23,12 @@ class REquipAtivDAO extends Conn {
     public function dados() {
 
         $select = " SELECT "
-                    . " VE.EQUIP_ID AS \"idEquip\" "
+                    . " VA.MODELEQUIP_ID AS \"idModelo\" "
                     . " , AA.ATIVAGR_ID AS \"idAtiv\" "
                 . " FROM "
-                    . " V_SIMOVA_EQUIP VE "
-                    . " , V_SIMOVA_MODELO_ATIVAGR VA "
+                    . " V_SIMOVA_MODELO_ATIVAGR VA "
                     . " , V_SIMOVA_ATIVAGR_NEW AA "
                 . " WHERE "
-                . " VE.MODELEQUIP_ID = VA.MODELEQUIP_ID "
-                . " AND "
                 . " VA.ATIVAGR_CD = AA.ATIVAGR_CD "
                 . " AND "
                 . " AA.DESAT = 0 " 

@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 require_once('./model/dao/AtividadeDAO.class.php');
-require_once('./model/dao/REquipAtivDAO.class.php');
+require_once('./model/dao/RModeloAtivDAO.class.php');
 /**
  * Description of AtividadeCTR
  *
@@ -28,16 +28,16 @@ class AtividadeCTR {
     
     public function atual() {
 
-        $rEquipAtivDAO = new REquipAtivDAO();
+        $rModeloAtivDAO = new RModeloAtivDAO();
         $atividadeDAO = new AtividadeDAO();
 
-        $dadosREquipAtiv = array("dados" => $rEquipAtivDAO->dados());
-        $resREquipAtiv = json_encode($dadosREquipAtiv);
+        $dadosRModeloAtiv = array("dados" => $rModeloAtivDAO->dados());
+        $resRModeloAtiv = json_encode($dadosRModeloAtiv);
 
         $dadosAtividade = array("dados" => $atividadeDAO->dados());
         $resAtividade = json_encode($dadosAtividade);
         
-        return $resREquipAtiv . "_" . $resAtividade;
+        return $resRModeloAtiv . "_" . $resAtividade;
                 
     }
     

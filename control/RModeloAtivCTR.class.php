@@ -5,20 +5,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-require_once('./model/dao/REquipAtivDAO.class.php');
+require_once('./model/dao/RModeloAtivDAO.class.php');
 /**
  * Description of REquipAtiv
  *
  * @author anderson
  */
-class REquipAtivCTR {
+class RModeloAtivCTR {
     //put your code here
     
     public function dados() {
         
-        $rEquipAtivDAO = new REquipAtivDAO();
+        $rModeloAtivDAO = new RModeloAtivDAO();
        
-        $dados = array("dados"=>$rEquipAtivDAO->dados());
+        $dados = array("dados"=>$rModeloAtivDAO->dados());
         $json_str = json_encode($dados);
         
         return $json_str;

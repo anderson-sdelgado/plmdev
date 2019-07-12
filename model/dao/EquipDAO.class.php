@@ -28,6 +28,7 @@ class EquipDAO extends Conn {
                 . " , E.CLASSOPER_CD AS \"codClasseEquip\" "
                 . " , CARACTER(E.CLASSOPER_DESCR) AS \"descrClasseEquip\" "
                 . " , E.TPTUREQUIP_CD AS \"codTurno\" "
+                . " , E.MODELEQUIP_ID AS \"idModelo\" "
                 . " FROM "
                 . " USINAS.V_SIMOVA_EQUIP E ";
         
